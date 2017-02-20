@@ -10,6 +10,9 @@ __pycache__/
 .idea/
 *.sublime-*
 
+# Migrations Files
+migrations/
+
 # Distribution / packaging
 .Python
 env/

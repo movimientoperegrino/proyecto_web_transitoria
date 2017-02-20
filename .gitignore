@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+# IDE files
+.idea/
+*.sublime-*
+
 # Distribution / packaging
 .Python
 env/

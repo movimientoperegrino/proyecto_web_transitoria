@@ -15,14 +15,14 @@ else:
     ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('admin', 'admin@movimientoperegrino.org'),
 )
 
 MANAGERS = ADMINS
 
 TIME_ZONE = 'America/Asuncion'
 LANGUAGE_CODE = 'es-es'
-FONTAWESOME_ICON_SIZE = 6
+FONTAWESOME_ICON_SIZE = 5
 
 INSTALLED_APPS = (
     'django.contrib.auth',

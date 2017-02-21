@@ -28,6 +28,7 @@ class Dependencia(models.Model):
         return "%s" % self.nombre
 
 
+
 class Retiro(models.Model):
     nombre = models.CharField(max_length=100)
     fecha_inicio = models.DateTimeField()

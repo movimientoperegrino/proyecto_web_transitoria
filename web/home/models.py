@@ -37,7 +37,7 @@ class Retiro(models.Model):
     fecha_inscripcion = models.DateTimeField(null=True, blank=True)
 
     def __unicode__(self):
-        return "%s -> Inicio:%s %s" % (self.nombre, self.fecha_inicio.strftime("%d/%m/%y"), self.casa)
+        return "%s -> Inicio: %s %s" % (self.nombre, self.fecha_inicio.strftime("%d/%m/%y"), self.casa)
 
 
 class RetiroRequisito(models.Model):

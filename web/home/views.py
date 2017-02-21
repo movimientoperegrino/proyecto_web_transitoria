@@ -9,7 +9,7 @@ def index_view(request):
     equipo_central = Dependencia.objects.filter(tipo='A').order_by('nombre')
     equipo_general = Dependencia.objects.filter(tipo='C').order_by('nombre')
     retiros = Retiro.objects.all().order_by('fecha_inicio')
-    casas_retiro = RetiroCasa.all().order_by('nombre')
+    casas_retiro = RetiroCasa.objects.all().order_by('nombre')
     ctx = {'consejo': consejo, 'equipo_central': equipo_central, 'equipo_general': equipo_general,
            'retiros': retiros, 'casas': casas_retiro}
     return render_to_response('home/index.html', ctx, context_instance=RequestContext(request))

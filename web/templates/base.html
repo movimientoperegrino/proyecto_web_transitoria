@@ -269,8 +269,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8 text-center">
+            <div class="col-lg-12 text-center">
                 <div class="row text-center table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -280,24 +279,30 @@
                                 <th class="text-center">Inicio</th>
                                 <th class="text-center">Fin</th>
                                 <th class="text-center">Inscripción</th>
-                                <th class="text-center">Información</th>
+                                <th class="text-center"></th>
                             </tr>
                         </thead>
                         <tbody>
+                            {% now "Y-m-d" as hoy %}
                             {% for r in retiros %}
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
-                                    <td class="text-left"><a target="_blank" href="http://inscripciones.movimientoperegrino.org">{{ r.nombre }}</a>
+                                    <td class="text-left">
+                                        <a href="#requisitos_{{ r.nombre|slugify }}" class="portfolio-link" data-toggle="modal">{{ r.nombre }}</a>
                                     </td>
                                     <td>{{ r.fecha_inicio |date:"d/M - G:i" }}</td>
                                     <td>{{ r.fecha_fin |date:"d/M - G:i" }}</td>
                                     {% if r.fecha_inscripcion %}
-                                        <td>{{ r.fecha_inscripcion |date:"d/M - G:i" }}</td>
+                                        <td>{{ r.fecha_inscripcion|date:"d/M - G:i" }}</td>
+                                        {% if hoy > r.fecha_inicio|date:"Y-m-d" %}
+                                            <td>Finalizado</td>
+                                        {% else %}
+                                            <td><a target="_blank" href="http://inscripciones.movimientoperegrino.org">Inscribirse</a></td>
+                                        {% endif %}
                                     {% else %}
                                         <td>No definido</td>
+                                        <td></td>
                                     {% endif %}
-                                    <td><a href="#requisitos_{{ r.nombre|slugify }}" class="portfolio-link" data-toggle="modal"><i class="fa fa-eye fa-1x"></i></a>
-                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -305,7 +310,7 @@
                 </div>
                 <h4 class="section-subheading text-muted"><td><a href="#casas_de_retiro_info" class="portfolio-link" data-toggle="modal">Casas de Retiros: Más información aquí.</a></h4>
             </div>
-            <div class="col-lg-2"></div>
+
         </div>
     </div>
 </section>
@@ -545,6 +550,12 @@
                             <p>{{ r.requisito.requisito }}</p>
                             <h4>Lugar</h4>
                             <p><a href="#casas_de_retiro_info" class="portfolio-link" data-toggle="modal">{{ r.casa }}</a></p>
+
+                            {% if r.fecha_inscripcion %}
+                                {% if not hoy > r.fecha_inicio|date:"Y-m-d" %}
+                                    <a href="http://inscripciones.movimientoperegrino.org" class="btn btn-primary"><i class="fa fa-star"></i> Inscribirse</a>
+                                {% endif %}
+                            {% endif %}
                             <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
                         </div>
                     </div>

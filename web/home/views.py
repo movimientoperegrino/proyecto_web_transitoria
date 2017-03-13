@@ -15,7 +15,8 @@ def index_view(request):
 
     for r in retiros:
         cursor = connections['inscripcionDB'].cursor()
-        cursor.execute("SELECT \"fechaApertura\" FROM inscripcion_actividad WHERE nombre LIKE '%s'" % r.nombre)
+        cursor.execute("SELECT \"fechaApertura\" FROM inscripcion_actividad "
+                       "WHERE nombre LIKE '%s' ORDER BY \"fechaInicio\" DESC " % r.nombre)
         fecha_apertura = cursor.fetchone()
         if fecha_apertura:
             r.fecha_inscripcion = fecha_apertura[0]
